@@ -1,15 +1,26 @@
-import { Image } from "expo-image";
+import { Colors } from "@/constants/colors";
+import { useRouter } from "expo-router";
 import React from "react";
-import { Text, View } from "react-native";
-
+import { Animated, Text, View } from "react-native";
 export default function splash_screen() {
+  const route = useRouter();
+
+  const gotoWelcome = () => {
+    route.replace("/welcome_screen");
+  };
+  //setTimeout(gotoWelcome, 3000);
   return (
-    <View>
-      <Image
+    <View
+      style={{ backgroundColor: Colors.btnColor }}
+      className="h-full flex justify-center place-items-center"
+    >
+      <Animated.Image
         source={require("../assets/images/logo.png")}
-        style={{ width: "80%", aspectRatio: 1 }}
+        style={{ height: "50%", aspectRatio: 1 }}
       />
-      <Text className="text-3xl">Home</Text>
+      <Text className="text-6xl text-slate-200 mt-20 text-center font-light">
+        Stay Focused.
+      </Text>
     </View>
   );
 }
