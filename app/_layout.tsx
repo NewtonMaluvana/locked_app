@@ -6,7 +6,7 @@ export default function RootLayout() {
       <Stack.Screen name="(tabs)" />
       <Stack.Screen name="(auth)" />
       <Stack.Screen name="welcome_screen" />
-      <Stack.Screen name="splash_Screen" />
+      <Stack.Screen name="splash_screen" />
     </Stack>
   );
 }
