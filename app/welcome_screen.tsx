@@ -22,19 +22,31 @@ export default function welcome_screen() {
         <Image
           className="z-30"
           source={require("../assets/images/logo.png")}
-          style={{ width: "70%", aspectRatio: 1 }}
+          style={{ height: "60%", aspectRatio: 1 }}
         />
+        <Text
+          style={{ color: "#B9B7B7", fontSize: 25 }}
+          className="mt-6 text-3xl  text-center"
+        >
+          Stay focused by blocking distracting Apps that slows you down
+        </Text>
       </View>
-      <View className="h-[65%] w-full z-10  border-none absolute top-0 left-0 bg-gray-400"></View>
       <View
-        style={{ borderTopStartRadius: 120 }}
-        className="h-[35%] w-full z-50 bottom-0 bg-gray-400 flex justify-center place-items-center  border-none left-0  absolute "
+        style={{ backgroundColor: Colors.bgColor }}
+        className="h-[65%] w-full z-10  border-none absolute top-0 left-0 bg-gray-400"
+      ></View>
+      <View
+        style={{ borderTopStartRadius: 120, backgroundColor: "#B9B7B7" }}
+        className="h-[35%] w-full z-50 bottom-0 flex justify-center place-items-center  border-none left-0  absolute "
       >
-        <Text className="mb-10 text-2xl text-gray-200">
-          One app . zero distractions{" "}
+        <Text
+          style={{ color: Colors.btnColor, fontSize: 26 }}
+          className="mb-10 text-gray-200"
+        >
+          One app . zero distractions
         </Text>
         <Pressable
-          onPress={() => route.push("/signup_page")} //onpress .goes to sign up page
+          onPress={() => route.push("/(tabs)")} //onpress .goes to sign up page
           style={{
             height: 60,
             width: "65%",
