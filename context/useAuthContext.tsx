@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { supabase } from "../utils/supabase";
 
-export interface User {
+export default interface User {
   id: string;
   email: string;
   username: string;

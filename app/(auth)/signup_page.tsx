@@ -1,11 +1,29 @@
-import { Colors } from "@/app/constants/colors";
+import { Colors } from "@/constants/colors";
+import { useAuth } from "@/context/useAuthContext";
 import React, { useState } from "react";
 import { Text, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 export default function signup_page() {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
+  const [passwordMatch, setPaswordMatch] = useState(false);
   const [Loading, setLoading] = useState(false);
+
+  const { signup } = useAuth();
+
+  const signNewUser = async () => {
+    //checking if password matches with the comfirmed
+    if (confirmPassword.toString == Password.toString) {
+      try {
+        await signup(Email, Password, confirmPassword);
+      } catch (error) {
+        throw error;
+      }
+    } else {
+      setPaswordMatch(true);
+    }
+  };
   return (
     <View
       style={{ backgroundColor: Colors.btnColor }}
@@ -35,19 +53,35 @@ export default function signup_page() {
         </Text>
 
         <TextInput
+          onChangeText={setEmail}
+          value={Email}
           outlineStyle={{ borderRadius: 20 }}
           style={{ width: "90%", marginTop: 20, height: 60 }}
           mode="outlined"
           label="Email"
         />
         <TextInput
+          onChangeText={setPassword}
+          value={Password}
           outlineStyle={{ borderRadius: 20 }}
           style={{ width: "90%", marginTop: 20, height: 60 }}
           mode="outlined"
           label="Password"
         />
+        <TextInput
+          onChangeText={setconfirmPassword}
+          value={confirmPassword}
+          outlineStyle={{ borderRadius: 20 }}
+          style={{ width: "90%", marginTop: 20, height: 60 }}
+          mode="outlined"
+          label="Confirm Password"
+        />
+        {passwordMatch && (
+          <Text className="text-red-600 text-left">Passwords do no match</Text>
+        )}
 
         <Button
+          onPress={signNewUser}
           style={{
             width: "90%",
 
