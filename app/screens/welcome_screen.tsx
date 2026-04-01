@@ -1,4 +1,4 @@
-import { Colors } from "@/constants/colors";
+import { Colors } from "@/app/constants/colors";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React from "react";
@@ -21,7 +21,7 @@ export default function welcome_screen() {
       >
         <Image
           className="z-30"
-          source={require("../assets/images/logo.png")}
+          source={require("../../assets/images/logo.png")}
           style={{ height: "60%", aspectRatio: 1 }}
         />
         <Text
@@ -46,7 +46,7 @@ export default function welcome_screen() {
           One app . zero distractions
         </Text>
         <Pressable
-          onPress={() => route.push("/(tabs)")} //onpress .goes to sign up page
+          onPress={() => route.push("/screens/(tabs)")} //onpress .goes to sign up page
           style={{
             height: 60,
             width: "65%",
@@ -62,7 +62,7 @@ export default function welcome_screen() {
             Get Started
           </Text>
           <Pressable
-            onPress={() => route.push("/signup_page")} //onpress .goes to sign up page
+            onPress={() => route.push("/screens/signup_page")} //onpress .goes to sign up page
             className="h-full absolute right-0 justify-center place-items-center"
             style={{
               aspectRatio: 1,
@@ -73,7 +73,7 @@ export default function welcome_screen() {
             <Image
               tintColor={"white"}
               style={{ width: 40, aspectRatio: 1 }}
-              source={require("../assets/images/arrow-right.png")}
+              source={require("../../assets/images/arrow-right.png")}
             ></Image>
           </Pressable>
         </Pressable>
@@ -83,7 +83,7 @@ export default function welcome_screen() {
           <Text className="text-white">Alredy have an Account?</Text>{" "}
           <Text
             style={{ color: Colors.btnColor }}
-            onPress={() => route.push("/(auth)/signin_page")}
+            onPress={() => route.push("/screens/(auth)/signin_page")}
           >
             Sign in
           </Text>

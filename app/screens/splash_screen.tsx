@@ -1,4 +1,4 @@
-import { Colors } from "@/constants/colors";
+import { Colors } from "@/app/constants/colors";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Animated, Text, View } from "react-native";
@@ -6,7 +6,7 @@ export default function splash_screen() {
   const route = useRouter();
 
   const gotoWelcome = () => {
-    route.replace("/welcome_screen");
+    route.replace("/screens/welcome_screen");
   };
   //setTimeout(gotoWelcome, 3000);
   return (
@@ -15,7 +15,7 @@ export default function splash_screen() {
       className="h-full flex justify-center place-items-center"
     >
       <Animated.Image
-        source={require("../assets/images/logo.png")}
+        source={require("../../assets/images/logo.png")}
         style={{ height: "50%", aspectRatio: 1 }}
       />
       <Text className="text-6xl text-slate-200 mt-20 text-center font-light">

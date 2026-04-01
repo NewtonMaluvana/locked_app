@@ -1,5 +1,5 @@
 export const Colors = {
-  bgColor: "##B9B7B7",
+  bgColor: "#B9B7B7",
   bgColor2: "white",
   btnColor: "#711eb2",
   btnColor2: "rgb(0 0 0)",
