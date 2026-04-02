@@ -1,5 +1,6 @@
 import { Colors } from "@/constants/colors";
 import { useAuth } from "@/context/useAuthContext";
+import { supabase } from "@/utils/supabase";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Text, View } from "react-native";
@@ -19,12 +20,22 @@ export default function signin_page() {
 
     try {
       await signin(Email, Password);
+      const { data, error } = await supabase.auth.getUser();
+      if (data.user) {
+        if (data.user.confirmed_at) {
+          route.replace("/(tabs)");
+        }
+      }
     } catch (error) {
-      throw error;
+      if (Error?.includes("Email not confirmed")) {
+        route.replace("/(auth)/verify_page");
+        return;
+      }
+      console.log(error);
+      return;
     }
-
-    route.replace("/(tabs)");
   };
+
   return (
     <View
       style={{ backgroundColor: Colors.btnColor }}

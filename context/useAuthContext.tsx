@@ -10,6 +10,7 @@ export default interface User {
 interface AuthContextType {
   Error: string | null;
   user: User | null;
+  userConfirmed: boolean;
   signup: (
     email: string,
     Password: string,
@@ -23,6 +24,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [Error, setError] = useState<string | null>(null);
+  const [userConfirmed, setuserConfirmed] = useState(false);
   const signup = async (
     email: string,
     password: string,
@@ -55,15 +57,46 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (error) {
       if (error.message === "Invalid login credentials") {
         setError("No account found with this email or password is incorrect.");
+        return;
       } else {
         setError(error.message);
+        return;
       }
-      return;
+    }
+
+    if (data.user) {
+      if (data.user.email_confirmed_at) {
+        console.log("im in");
+        setuserConfirmed(true);
+      }
     } //if signup athaurisation fail
   };
 
+  //check if the user is email verified?
+  // const useRequireConfirmedUser = async () => {
+  //   const { data, error } = await supabase.auth.getUser();
+
+  //   if (error) {
+  //     throw error;
+  //   }
+
+  //   if (data.user) {
+  //     if (data.user.confirmed_at) {
+  //       setuserConfirmed(true);
+  //     }
+  //   }
+  // };
+
   return (
-    <AuthContext.Provider value={{ signup, user, Error, signin }}>
+    <AuthContext.Provider
+      value={{
+        signup,
+        user,
+        Error,
+        signin,
+        userConfirmed,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
