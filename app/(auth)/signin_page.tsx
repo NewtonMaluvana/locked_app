@@ -11,19 +11,19 @@ export default function signin_page() {
   const [passwordMatch, setPaswordMatch] = useState(false);
   const [Loading, setLoading] = useState(false);
   const route = useRouter();
-  const { signup, Error } = useAuth();
+  const [secure, setSecure] = useState(true);
+  const { signup, Error, signin } = useAuth();
 
-  const signNewUser = async () => {
+  const signInUser = async () => {
     //checking if password matches with the comfirmed
-    if (confirmPassword == Password) {
-      try {
-        await signup(Email, Password, confirmPassword);
-      } catch (error) {
-        throw error;
-      }
-    } else {
-      setPaswordMatch(true);
+
+    try {
+      await signin(Email, Password);
+    } catch (error) {
+      throw error;
     }
+
+    route.replace("/(tabs)");
   };
   return (
     <View
@@ -72,18 +72,28 @@ export default function signin_page() {
           style={{ width: "90%", marginTop: 20, height: 70 }}
           mode="outlined"
           label="Password"
+          secureTextEntry={secure}
+          right={
+            <TextInput.Icon
+              onPress={() => setSecure(!secure)}
+              icon={secure ? "eye-off" : "eye"}
+            />
+          }
         />
-        <Text
-          onPress={() => {}}
-          className="text-lg text-start self-start ms-6 mt-2 text-red-600"
-        >
-          Forgot password?
-        </Text>
+        <View className="w-[90%]">
+          <Text
+            style={{ color: Colors.btnColor }}
+            onPress={() => {}}
+            className="text-lg text-start self-end  mt-2 "
+          >
+            Forgot password?
+          </Text>
+        </View>
 
         {Error && <Text className="text-red-600 text-left">{Error}</Text>}
         <Button
           mode="elevated"
-          onPress={signNewUser}
+          onPress={signInUser}
           style={{
             width: "90%",
             paddingVertical: 0,
@@ -96,7 +106,7 @@ export default function signin_page() {
           className=""
           labelStyle={{ fontSize: 24 }}
         >
-          Sign Up
+          Log in
         </Button>
         <View className="flex flex-row gap-2 mt-2">
           {" "}

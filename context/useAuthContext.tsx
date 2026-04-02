@@ -15,6 +15,7 @@ interface AuthContextType {
     Password: string,
     confirmpassword: string
   ) => Promise<void>;
+  signin: (email: string, Password: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -44,8 +45,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } //if signup athaurisation fail
   };
 
+  //login user function
+  const signin = async (email: string, password: string) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) {
+      if (error.message === "Invalid login credentials") {
+        setError("No account found with this email or password is incorrect.");
+      } else {
+        setError(error.message);
+      }
+      return;
+    } //if signup athaurisation fail
+  };
+
   return (
-    <AuthContext.Provider value={{ signup, user, Error }}>
+    <AuthContext.Provider value={{ signup, user, Error, signin }}>
       {children}
     </AuthContext.Provider>
   );
