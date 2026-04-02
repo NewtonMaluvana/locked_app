@@ -8,6 +8,7 @@ export default interface User {
 }
 
 interface AuthContextType {
+  Error: string | null;
   user: User | null;
   signup: (
     email: string,
@@ -20,7 +21,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-
+  const [Error, setError] = useState<string | null>(null);
   const signup = async (
     email: string,
     password: string,
@@ -31,11 +32,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       password: password,
     });
 
-    if (error) throw error; //if signup athaurisation fail
+    if (error) {
+      if (error.message.includes("already registered")) {
+        setError("An account with this email already exists.");
+      } else if (error.message.includes("invalid")) {
+        setError("Please enter a valid email address.");
+      } else {
+        setError(error.message);
+      }
+      return;
+    } //if signup athaurisation fail
   };
 
   return (
-    <AuthContext.Provider value={{ signup, user }}>
+    <AuthContext.Provider value={{ signup, user, Error }}>
       {children}
     </AuthContext.Provider>
   );

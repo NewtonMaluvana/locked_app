@@ -1,5 +1,6 @@
 import { Colors } from "@/constants/colors";
 import { useAuth } from "@/context/useAuthContext";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Text, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
@@ -9,12 +10,12 @@ export default function signup_page() {
   const [confirmPassword, setconfirmPassword] = useState("");
   const [passwordMatch, setPaswordMatch] = useState(false);
   const [Loading, setLoading] = useState(false);
-
-  const { signup } = useAuth();
+  const route = useRouter();
+  const { signup, Error } = useAuth();
 
   const signNewUser = async () => {
     //checking if password matches with the comfirmed
-    if (confirmPassword.toString == Password.toString) {
+    if (confirmPassword == Password) {
       try {
         await signup(Email, Password, confirmPassword);
       } catch (error) {
@@ -44,11 +45,14 @@ export default function signup_page() {
       >
         <Text
           style={{ color: Colors.btnColor }}
-          className="text-3xl font-semibold text-center mt-20"
+          className="text-4xl font-semibold text-center mt-10"
         >
           Create an Account
         </Text>
-        <Text style={{}} className="text-lg text-center  font-light mt-4">
+        <Text
+          style={{}}
+          className="text-lg text-center text-gray-400  font-normal mt-4"
+        >
           Enter Details to create an account
         </Text>
 
@@ -56,15 +60,16 @@ export default function signup_page() {
           onChangeText={setEmail}
           value={Email}
           outlineStyle={{ borderRadius: 20 }}
-          style={{ width: "90%", marginTop: 20, height: 60 }}
+          style={{ width: "90%", marginTop: 10, height: 70 }}
           mode="outlined"
           label="Email"
         />
         <TextInput
+          contentStyle={{ color: "gray" }}
           onChangeText={setPassword}
           value={Password}
           outlineStyle={{ borderRadius: 20 }}
-          style={{ width: "90%", marginTop: 20, height: 60 }}
+          style={{ width: "90%", marginTop: 20, height: 70 }}
           mode="outlined"
           label="Password"
         />
@@ -72,30 +77,44 @@ export default function signup_page() {
           onChangeText={setconfirmPassword}
           value={confirmPassword}
           outlineStyle={{ borderRadius: 20 }}
-          style={{ width: "90%", marginTop: 20, height: 60 }}
+          style={{ width: "90%", marginTop: 20, height: 70 }}
           mode="outlined"
           label="Confirm Password"
         />
         {passwordMatch && (
           <Text className="text-red-600 text-left">Passwords do no match</Text>
         )}
-
+        {Error && <Text className="text-red-600 text-left">{Error}</Text>}
         <Button
+          mode="elevated"
           onPress={signNewUser}
           style={{
             width: "90%",
-
+            paddingVertical: 0,
             marginTop: 20,
             backgroundColor: Colors.btnColor,
           }}
-          contentStyle={{ height: 50 }}
+          // loading={true}
+          contentStyle={{ height: 70, paddingVertical: 0 }}
           textColor="white"
           className=""
-          labelStyle={{ fontSize: 18 }}
-          mode="outlined"
+          labelStyle={{ fontSize: 24 }}
         >
           Sign Up
         </Button>
+        <View className="flex flex-row gap-2 mt-2">
+          {" "}
+          <Text className="text-lg text-gray-500">
+            Already have an account?
+          </Text>
+          <Text
+            onPress={() => route.push("/(auth)/signin_page")}
+            style={{ color: Colors.btnColor }}
+            className="text-lg"
+          >
+            Log in
+          </Text>
+        </View>
       </View>
     </View>
   );
