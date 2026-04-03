@@ -1,10 +1,15 @@
+import { Colors } from "@/constants/colors";
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 export default function index() {
   return (
     <View>
-      <Text>index</Text>
+      <View
+        style={{ backgroundColor: Colors.btnColor }}
+        className="h-[300px]"
+      ></View>
+      <View style={{ borderRadius: 30 }} className="w-full"></View>
     </View>
   );
 }
