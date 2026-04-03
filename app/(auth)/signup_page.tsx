@@ -98,7 +98,7 @@ export default function signup_page() {
             />
           }
         />
-        {passwordMatch && (
+        {/* {passwordMatch && (
           <View className="w-[90%]">
             <Text className="text-red-600 mt-2 self-start ">
               Passwords do not match
@@ -110,7 +110,7 @@ export default function signup_page() {
             {" "}
             <Text className="text-red-600 self-start mt-2">{Error}</Text>
           </View>
-        )}
+        )} */}
 
         <Button
           mode="elevated"
@@ -130,7 +130,6 @@ export default function signup_page() {
           Sign Up
         </Button>
         <View className="flex flex-row gap-2 mt-2">
-          {" "}
           <Text className="text-lg text-gray-500">
             Already have an account?
           </Text>

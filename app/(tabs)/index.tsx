@@ -1,15 +1,119 @@
 import { Colors } from "@/constants/colors";
+import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
+import Card from "../components/card";
+import Session_card from "../components/session_card";
 
 export default function index() {
   return (
-    <View>
+    <ScrollView>
       <View
         style={{ backgroundColor: Colors.btnColor }}
-        className="h-[300px]"
-      ></View>
-      <View style={{ borderRadius: 30 }} className="w-full"></View>
-    </View>
+        className="h-[220px] ps-6"
+      >
+        <View className="flex justify-center place-items-end m-2">
+          {" "}
+          {/* <Button
+            onPress={() => {}}
+            icon="lock"
+            contentStyle={{
+              backgroundColor: Colors.textColor2,
+            }}
+            textColor="white"
+            style={{ width: "40%", borderRadius: 15 }}
+            mode="elevated"
+          >
+            Premium
+          </Button> */}
+        </View>
+
+        <Text className="text-5xl md:text-7xl font-medium text-white">
+          Welcome
+        </Text>
+        <Text
+          className="text-2xl md:text-4xl mt-2  text w-[60%] md:w-[40%]"
+          style={{ color: "#A8A7A7" }}
+        >
+          You are in control now. Stay focused!.
+        </Text>
+      </View>
+      <View
+        style={{ borderRadius: 30, backgroundColor: Colors.bgColor }}
+        className="w-full p-2 "
+      >
+        <Text
+          className="font-bold mb-4 text-3xl md:text-5xl"
+          style={{ color: Colors.textColor3 }}
+        >
+          Features
+        </Text>
+        <View
+          style={{ backgroundColor: "#1492E0", borderRadius: 25 }}
+          className=" w-full px-2 place-items-center mb-2 justify-center"
+        >
+          <View className="flex place-items-start justify mt-4 ">
+            <Ionicons
+              className="text-7xl"
+              size={50}
+              name="timer"
+              color={"white"}
+            />
+          </View>
+          <Text
+            className="md:text-6xl  text-3xl"
+            style={{
+              color: "white",
+
+              fontWeight: "medium",
+              textAlign: "left",
+            }}
+          >
+            Session Lock
+          </Text>
+
+          <Text
+            className="text-lg md:text-2xl mb-4"
+            style={{ color: "#C3C3C3", textAlign: "center" }}
+          >
+            Control when and which apps are blocked
+          </Text>
+        </View>
+        <View className="flex flex-row justify-center gap-2 mb-2 place-content-center">
+          {
+            <Card
+              color={Colors.btnColor}
+              title="Strict Lock"
+              subtitle="Block the intire smartphone"
+              icon="lock-closed"
+            />
+          }
+          {
+            <Card
+              color="#b72748"
+              title="Anti-scroll"
+              subtitle="block short videos only"
+              icon="phone-portrait"
+            />
+          }
+        </View>
+      </View>
+
+      <View className="flex justify-between flex-row p-2">
+        <Text
+          style={{ color: Colors.textColor3 }}
+          className="text-3xl md:text-4xl font-medium text-center"
+        >
+          Lock Sessions
+        </Text>
+        <Text
+          style={{ color: Colors.textColor3 }}
+          className="text-lg md:text-2xl text-center"
+        >
+          See all
+        </Text>
+      </View>
+      <Session_card day="2" hour="12" minute="23" seconds="34" />
+    </ScrollView>
   );
 }

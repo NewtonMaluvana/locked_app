@@ -33,7 +33,7 @@ export default function welcome_screen() {
       </View>
       <View
         style={{ backgroundColor: Colors.bgColor }}
-        className="h-[65%] w-full z-10  border-none absolute top-0 left-0 bg-gray-400"
+        className="h-[65%] w-full z-10  border-none absolute top-0 left-0 "
       ></View>
       <View
         style={{ borderTopStartRadius: 120, backgroundColor: "#B9B7B7" }}

@@ -101,7 +101,7 @@ export default function signin_page() {
           </Text>
         </View>
 
-        {Error && <Text className="text-red-600 text-left">{Error}</Text>}
+        {/* {Error && <Text className="text-red-600 text-left">{Error}</Text>} */}
         <Button
           mode="elevated"
           onPress={signInUser}
