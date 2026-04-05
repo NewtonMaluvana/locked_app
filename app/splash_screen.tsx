@@ -1,7 +1,8 @@
 import { Colors } from "@/constants/colors";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Animated, Text, View } from "react-native";
+import { Text, View } from "react-native";
 export default function splash_screen() {
   const route = useRouter();
 
@@ -14,7 +15,7 @@ export default function splash_screen() {
       style={{ backgroundColor: Colors.btnColor }}
       className="h-full flex justify-center place-items-center"
     >
-      <Animated.Image
+      <Image
         source={require("../assets/images/logo.png")}
         style={{ height: "50%", aspectRatio: 1 }}
       />

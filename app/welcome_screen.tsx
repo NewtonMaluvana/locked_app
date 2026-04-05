@@ -79,8 +79,7 @@ export default function welcome_screen() {
         </Pressable>
 
         <View className="flex flex-row gap-2 mt-2 place-items-center">
-          {" "}
-          <Text className="text-white">Alredy have an Account?</Text>{" "}
+          <Text className="text-white">Alredy have an Account?</Text>
           <Text
             style={{ color: Colors.btnColor }}
             onPress={() => route.push("/(auth)/signin_page")}

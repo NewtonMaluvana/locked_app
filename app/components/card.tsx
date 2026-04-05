@@ -14,8 +14,8 @@ const Card = ({ title, subtitle, icon, color }: PropType) => {
       style={{ backgroundColor: color, borderRadius: 25 }}
       className="w-[50%] aspect-square  px-2 place-items-center justify-center"
     >
-      <View className="flex place-items-start justify mt-4 ">
-        <Ionicons className="text-7xl" size={50} name={icon} color={"white"} />
+      <View className="flex place-items-center  justify-center  ">
+        <Ionicons className="" size={50} name={icon} color={"white"} />
       </View>
       <Text
         className="md:text-6xl  text-3xl"
