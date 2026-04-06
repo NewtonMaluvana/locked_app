@@ -14,23 +14,22 @@ const Card = ({ title, subtitle, icon, color }: PropType) => {
       style={{ backgroundColor: color, borderRadius: 25 }}
       className="w-[50%] aspect-square  px-2 place-items-center justify-center"
     >
-      <View className="flex place-items-center  justify-center  ">
+      <View className="flex flex-row place-items-center  justify-center  ">
         <Ionicons className="" size={50} name={icon} color={"white"} />
       </View>
       <Text
-        className="md:text-6xl  text-3xl"
+        className="md:text-6xl text-center  text-3xl"
         style={{
           color: "white",
 
           fontWeight: "medium",
-          textAlign: "left",
         }}
       >
         {title}
       </Text>
 
       <Text
-        className="text-lg md:text-2xl"
+        className="text-lg md:text-2xl "
         style={{ color: "#C3C3C3", textAlign: "center" }}
       >
         {subtitle}

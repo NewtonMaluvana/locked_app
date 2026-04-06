@@ -61,7 +61,7 @@ export default function index() {
             style={{ backgroundColor: "#1492E0", borderRadius: 25 }}
             className=" w-full px-2 place-items-center mb-2 justify-center"
           >
-            <View className="flex place-items-start justify mt-4 ">
+            <View className="flex flex-row place-items-center  justify-center mt-4 ">
               <Ionicons
                 className="text-7xl"
                 size={50}
@@ -70,20 +70,19 @@ export default function index() {
               />
             </View>
             <Text
-              className="md:text-6xl  text-3xl"
+              className="md:text-6xl text-center  text-3xl"
               style={{
                 color: "white",
 
                 fontWeight: "medium",
-                textAlign: "left",
               }}
             >
               Session Lock
             </Text>
 
             <Text
-              className="text-lg md:text-2xl mb-4"
-              style={{ color: "#C3C3C3", textAlign: "center" }}
+              className="text-lg md:text-2xl mb-4 text-center"
+              style={{ color: "#C3C3C3" }}
             >
               Control when and which apps are blocked
             </Text>
@@ -93,7 +92,7 @@ export default function index() {
               <Card
                 color={Colors.btnColor}
                 title="Strict Lock"
-                subtitle="Block the intire smartphone"
+                subtitle="Block the intire phone"
                 icon="lock-closed"
               />
             }
@@ -131,23 +130,39 @@ export default function index() {
         >
           App usage
         </Text>
+        <View className="w-[98%] self-center mx-1 my-2">
+          <SelectList
+            defaultOption={data[0]}
+            search={false}
+            boxStyles={{
+              width: "45%",
+              borderWidth: 0,
+              backgroundColor: Colors.bgColor2,
+              borderRadius: 20,
+              marginVertical: 4,
+            }}
+            inputStyles={{ color: Colors.textColor3 }}
+            dropdownStyles={{
+              borderWidth: 0,
+              backgroundColor: Colors.bgColor2,
+              width: "45%",
+            }}
+            setSelected={(val: string) => setSelected(val)}
+            data={data}
+            save="value"
+          />
+        </View>
 
-        <SelectList
-          defaultOption={data[0]}
-          search={false}
-          boxStyles={{
-            width: 150,
-            borderWidth: 0,
-            backgroundColor: Colors.bgColor2,
-            borderRadius: 20,
-            marginVertical: 4,
-          }}
-          inputStyles={{ color: Colors.textColor3 }}
-          setSelected={(val: string) => setSelected(val)}
-          data={data}
-          save="value"
+        <App_usage_card
+          name="Youtube"
+          time="1 hour 3 minutes"
+          icon="logo-youtube"
         />
-        <App_usage_card />
+        <App_usage_card
+          name="Facebook"
+          time="1 hour 3 minutes"
+          icon="logo-facebook"
+        />
       </View>
     </ScrollView>
   );
